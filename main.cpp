@@ -4,37 +4,38 @@ constexpr int N_ELEMENTS = 100;
 
 int main()
 {
-    //HIBA: helytelen nev a konstansra valo hivatkozaskor
-    int *b = new int[NELEMENTS];
-    //HIBA: rossz idezojel + lemaradt << std::endl;
-    std::cout << '1-100 ertekek duplazasa'
-    //HIBA: lemaradt ciklus feltetel
-    //HIBA: lemaradt a ciklusvaltozo modositas
-    for (int i = 0;)
+    //FIXED: helytelen nev a konstansra valo hivatkozaskor
+    int *b = new int[N_ELEMENTS];
+    //FIXED: rossz idezojel + lemaradt << std::endl;
+    std::cout << "1-100 ertekek duplazasa" << std::endl;
+    //FIXED: lemaradt ciklus feltetel
+    //FIXED: lemaradt a ciklusvaltozo modositas
+    for (int i = 0; i < N_ELEMENTS; i++)
     {
-        //HIBA: i+1 i helyett, mivel 0-tol kezdodik a ciklus
-        b[i] = i * 2;
+        //FIXED: i+1 i helyett, mivel 0-tol kezdodik a ciklus
+        b[i] = (i+1) * 2;
     }
-    //HIBA: rossz ciklusfeltetel, igy egyszer sem fut le
-    for (int i = 0; i; i++)
+    //FIXED: rossz ciklusfeltetel, igy egyszer sem fut le
+    for (int i = 0; i < N_ELEMENTS; i++)
     {
-        //HIBA: hianyzik a kiirando ertek + std::endl;
-        std::cout << "Ertek:"
+        //FIXED: hianyzik a kiirando ertek + std::endl;
+        std::cout << "Ertek:" << b[i] << std::endl;
     }    
     std::cout << "Atlag szamitasa: " << std::endl;
-    //HIBA: atlag nincs inicializalva
-    int atlag;
-    //HIBA: , helyett ; a ciklusfeltetel utan
-    for (int i = 0; i < N_ELEMENTS, i++)
+    //FIXED: atlag nincs inicializalva
+    int atlag = 0;
+    //FIXED: , helyett ; a ciklusfeltetel utan
+    for (int i = 0; i < N_ELEMENTS; i++)
     {
-        //HIBA: hianyzik a pontosvesszo
-        atlag += b[i]
+        //FIXED: hianyzik a pontosvesszo
+        atlag += b[i];
     }
-    //HIBA: igy egesz osztas lesz
-    atlag /= N_ELEMENTS;
+    //FIXED: igy egesz osztas lesz
+    atlag /= (double)N_ELEMENTS;
     std::cout << "Atlag: " << atlag << std::endl;
 
-    //memoriafelszabaditas hianyzik -> delete[] b
+    //FIXED: memoriafelszabaditas hianyzik -> delete[] b
+    delete[] b;
 
     return 0;
 }
