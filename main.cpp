@@ -36,6 +36,6 @@ int main()
 
     //FIXED: memoriafelszabaditas hianyzik -> delete[] b
     delete[] b;
-
+    std::cout << "Teszt" << std::endl;
     return 0;
 }
